@@ -11,7 +11,7 @@ The members of the team are:
 In the current digital age, the proliferation of fake news has become a significant concern. Misinformation can spread rapidly, misleading readers and causing widespread impact. To address this issue, our team embarked on a project to develop a web application that leverages machine learning techniques to detect fake news. This tool aims to assist news portals in verifying the authenticity of articles before publication, ensuring that only credible and verified information reaches the audience.
 
 ## Goal
-The primary goal of this project is to create an easy-to-use web application that can accurately identify fake news articles using advanced machine learning algorithms. By providing a reliable verification tool, we aim to enhance the credibility of news portals and contribute to the fight against misinformation.
+The primary goal of this project is to first create an algorithm that can predict whether a news article is fake or not. In the second step, we will construct an easy-to-use web application that utilizes this algorithm to accurately identify fake news articles. By providing a reliable verification tool, we aim to enhance the credibility of news portals and contribute to the fight against misinformation.
 
 ## Technical Details
 Our fake news detection web app is built using Python and incorporates several powerful libraries and tools to achieve high accuracy and performance. Below are the key technical components and libraries used in this project:
@@ -24,8 +24,6 @@ Our fake news detection web app is built using Python and incorporates several p
 * TfidfVectorizer: From the scikit-learn library, used to convert text data into numerical features based on term frequency-inverse document frequency (TF-IDF).
 * LogisticRegression: A machine learning algorithm from scikit-learn, used as the primary model for detecting fake news.
 
-## Usage:
-To use the web app, simply input the news article you wish to verify, and the app will provide a prediction indicating whether the article is likely fake or real.
 
 ## Conclusion
 By integrating state-of-the-art machine learning techniques and creating a seamless user experience, our fake news detection web app aims to be a valuable tool for news portals and readers alike, promoting the dissemination of accurate and trustworthy information.

@@ -32,7 +32,7 @@ By integrating state-of-the-art machine learning techniques and creating a seaml
 - **Leonardo Ferreira da Silva** 
   - GitHub: [@leofds12](https://github.com/leofds12)
 
-- **Maria Manuela Saez** - Frontend Developer
+- **Maria Manuela Saez** 
   - GitHub: [@manuelasaez](https://github.com/manuelasaez)
 
 - **Nataniel Martinez** 

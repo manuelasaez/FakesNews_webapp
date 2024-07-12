@@ -17,6 +17,7 @@ Our fake news detection web app is built using Python and incorporates several p
 * pandas: A data manipulation and analysis library, used for handling datasets.
 * numpy: A fundamental package for numerical computing in Python, used for various numerical operations.
 * NLTK (Natural Language Toolkit): A library for working with human language data, used for text processing and feature extraction.
+* UMAP (Uniform Manifold Approximation and Projection): a dimensionality reduction technique that is particularly effective for visualizing high-dimensional data.
 * TfidfVectorizer: From the scikit-learn library, used to convert text data into numerical features based on term frequency-inverse document frequency (TF-IDF).
 * LogisticRegression: A machine learning algorithm from scikit-learn, used as the primary model for detecting fake news.
 

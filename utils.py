@@ -57,6 +57,34 @@ class Preprocess:
         self.test_df = self.test_df[self.test_df["text"].str.len() >= 20]
         return self.train_df, self.test_df
 
+
+    def newtext(
+        self,
+    ):
+        """Convert non-string objects in strings for title, author and text and then fill missing values with empty strings
+        Create new column called "new text" merging title, text and author column"""
+#        self.train_df["title"] = self.train_df["title"].astype(str)
+#        self.train_df["author"] = self.train_df["author"].astype(str)
+#        self.train_df["text"] = self.train_df["text"].astype(str)
+
+#        self.train_df["author"] = self.train_df["author"].fillna("")
+#        self.train_df["title"] = self.train_df["title"].fillna("")
+#        self.train_df["text"] = self.train_df["text"].fillna("")
+
+#        self.test_df["title"] = self.test_df["title"].astype(str)
+#        self.test_df["author"] = self.test_df["author"].astype(str)
+#        self.test_df["text"] = self.test_df["text"].astype(str)
+
+#        self.test_df["author"] = self.test_df["author"].fillna("")
+#        self.test_df["title"] = self.test_df["title"].fillna("")
+#        self.test_df["text"] = self.test_df["text"].fillna("")
+
+
+        self.train_df["new_text"] = self.train_df["text"] + self.train_df["title"] + self.train_df["author"]
+        self.test_df["new_text"] = self.test_df["text"] + self.test_df["title"] + self.test_df["author"]
+
+        return self.train_df, self.test_df
+
     def filter_english_text_edit_df(self, df: pd.DataFrame, text_column: str) -> pd.DataFrame:
         """
         Detects and filters only English text from a DataFrame based on a specified text column.

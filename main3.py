@@ -28,8 +28,9 @@ def main():
     train_df, test_df = preprocess.remove_rows()
     train_df, test_df = preprocess.remove_duplicates()
     train_df, test_df = preprocess.remove_rows_lower_than20()
-    train_df = preprocess.filter_english_text_edit_df(train_df, 'text')
-    test_df = preprocess.filter_english_text_edit_df(test_df, 'text')
+    train_df, test_df = preprocess.newtext()
+    train_df = preprocess.filter_english_text_edit_df(train_df, 'new_text')
+    test_df = preprocess.filter_english_text_edit_df(test_df, 'new_text')
 
 
     object_vectorization = Vectorization()
@@ -42,7 +43,7 @@ def main():
 
     labels1 = train_df.copy()["label"].values
     labels = [int(label) for label in labels1]
-    filtered_corpus = train_df.copy()["text"].values
+    filtered_corpus = train_df.copy()["new_text"].values
  
 
     max_features = 30  # esto se puede cambiar

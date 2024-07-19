@@ -10,7 +10,10 @@ from sklearn.metrics import (
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
-# from data_modelling import
+from sklearn.naive_bayes import GaussianNB
+from sklearn.preprocessing import MaxAbsScaler
+from scipy.sparse import issparse
+
 
 
 def main():
@@ -87,6 +90,34 @@ def main():
     recall = recall_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred)
     print(f"Performance: RANDOM FOREST")
+    print(f"Accuracy: {accuracy}")
+    print(f"Precision: {precision}")
+    print(f"Recall: {recall}")
+    print(f"F1 Score: {f1}")
+    print()
+
+    # Verifica si los datos son dispersos y conviértelos a densos
+    if issparse(X_train):
+        X_train = X_train.toarray()
+
+    if issparse(X_test):
+        X_test = X_test.toarray()
+
+    # Escalar los datos
+    scaler = MaxAbsScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+
+    model = GaussianNB()
+    model.fit(X_train_scaled, y_train)
+    y_pred = model.predict(X_test_scaled)
+    accuracy = accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred, average='weighted')  # Puedes ajustar el parámetro 'average' según tus necesidades
+    recall = recall_score(y_test, y_pred, average='weighted')        # Lo mismo para recall
+    f1 = f1_score(y_test, y_pred, average='weighted')                # Y también para F1 Score
+
+
+    print(f"Performance: NAIVE BAYES")
     print(f"Accuracy: {accuracy}")
     print(f"Precision: {precision}")
     print(f"Recall: {recall}")

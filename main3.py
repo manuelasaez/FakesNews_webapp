@@ -46,7 +46,7 @@ def main():
     filtered_corpus = train_df.copy()["new_text"].values
  
 
-    max_features = 30  # esto se puede cambiar
+    max_features = 300  # esto se puede cambiar
 
     unigram_vectors_without_stopwords = object_vectorization.get_tfidf_vectors(
         filtered_corpus, "english", max_features, 1

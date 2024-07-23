@@ -31,10 +31,12 @@ class Preprocess:
         self.train_df = None
         self.test_df = None
 
-    def read_csv(self):
-        """Read CSV file"""
+    def read_csv(self,  test_file=None):
+        """Read CSV files. If test_file is None, only read train_file."""
         self.train_df = pd.read_csv(os.getcwd() + "/data/train.csv", dtype="str")
         self.test_df = pd.read_csv(os.getcwd() + "/data/test.csv", dtype="str")
+        if test_file:
+            self.test_df = pd.read_csv(test_file, dtype="str")
         return self.train_df, self.test_df
 
     def remove_rows(self):

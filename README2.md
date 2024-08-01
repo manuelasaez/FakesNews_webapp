@@ -17,12 +17,9 @@ Take a look at **Deployment** for further information about how to deploy this t
 
 Here is a list of the libraries used for this tool.
 They must be installed for using it.
-
 ![images2](https://github.com/user-attachments/assets/ae529ceb-2a67-4c91-bc60-88fcdd4100fe)
-
-
-
- scikit-learn: A robust library for machine learning in Python, used for building and training the fake news detection models.
+* scikit-learn: A robust library for machine learning in Python, used for building and training the fake news detection models. (Use "pip install scikit-learn" in CMD to install in Windows)
+![images (1)](https://github.com/user-attachments/assets/39ada26f-3d69-4438-933e-a34693438e07)
 * pandas: A data manipulation and analysis library, used for handling datasets.
 * numpy: A fundamental package for numerical computing in Python, used for various numerical operations.
 * NLTK (Natural Language Toolkit): A library for working with human language data, used for text processing and feature extraction.

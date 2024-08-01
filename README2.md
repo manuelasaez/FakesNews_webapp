@@ -22,7 +22,8 @@ They must be installed for using it.
 
 * scikit-learn: A robust library for machine learning in Python, used for building and training the fake news detection models. (Use "pip install scikit-learn" in CMD to install in Windows)
   
-![images (1)](https://github.com/user-attachments/assets/39ada26f-3d69-4438-933e-a34693438e07)
+![images (1)](https://github.com/user-attachments/assets/7e3df629-3ca4-4b59-8a97-77fe1cdc4d84)
+
 
 * pandas: A data manipulation and analysis library, used for handling datasets.
 * numpy: A fundamental package for numerical computing in Python, used for various numerical operations.

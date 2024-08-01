@@ -1,13 +1,15 @@
-# DataLab-Workshop
+# DataLab - Workshop
 
 
 # Fake News Detection Web App
 
 ## Motivation
-In the current digital age, the proliferation of fake news has become a significant concern. Misinformation can spread rapidly, misleading readers and causing widespread impact. To address this issue, our team embarked on a project to develop a web application that leverages machine learning techniques to detect fake news. This tool aims to assist news portals in verifying the authenticity of articles before publication, ensuring that only credible and verified information reaches the audience.
+In the current digital age, the proliferation of fake news has become a significant concern. Misinformation can spread rapidly, misleading readers and causing widespread impact. To address this issue, our team embarked on a project to develop a web application that leverages machine learning techniques to detect fake news.
+This tool aims to assist news portals in verifying the authenticity of articles before publication, ensuring that only credible and verified information reaches the audience.
 
 ## Goal
-The primary goal of this project is to first create an algorithm that can predict whether a news article is fake or not. In the second step, we will construct an easy-to-use web application that utilizes this algorithm to accurately identify fake news articles. By providing a reliable verification tool, we aim to enhance the credibility of news portals and contribute to the fight against misinformation.
+The primary goal of this project is to develop an easy-to-use web application for identifying fake news articles. 
+At first, it is necessary to create an algorithm that can predict whether a news article is fake or not. The second step consists on the development of the web-app that utilizes this algorithm to accurately identify fake news articles. By providing a reliable verification tool, we aim to enhance the credibility of news portals and contribute to the fight against misinformation.
 
 ## Technical Details
 Our fake news detection web app is built using Python and incorporates several powerful libraries and tools to achieve high accuracy and performance. Below are the key technical components and libraries used in this project:

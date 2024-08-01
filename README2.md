@@ -18,7 +18,8 @@ Take a look at **Deployment** for further information about how to deploy this t
 Here is a list of the libraries used for this tool.
 They must be installed for using it.
 
-* https://img.shields.io/badge/:badgeContent
+![image](https://github.com/user-attachments/assets/3dcaee89-d6f6-46dd-9b59-e34028729ad6)
+
  scikit-learn: A robust library for machine learning in Python, used for building and training the fake news detection models.
 * pandas: A data manipulation and analysis library, used for handling datasets.
 * numpy: A fundamental package for numerical computing in Python, used for various numerical operations.

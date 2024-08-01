@@ -13,12 +13,12 @@ For using this tool you can enter to (xxxxxxx) or use the .exe file located in (
 Take a look at **Deployment** for further information about how to deploy this tool.
 
 
-### Pre-requierements 📋
+### Pre-requirements 📋
 
 Here is a list of the libraries used for this tool.
 They must be installed for using it.
-![images](https://github.com/user-attachments/assets/7c2d912a-96ad-4a2f-b1f8-105e60dae02b)
 
+![images](https://github.com/user-attachments/assets/7c2d912a-96ad-4a2f-b1f8-105e60dae02b)
 
 
  scikit-learn: A robust library for machine learning in Python, used for building and training the fake news detection models.

@@ -18,11 +18,13 @@ Take a look at **Deployment** for further information about how to deploy this t
 Here is a list of the libraries used for this tool.
 They must be installed for using it.
 
-![images2](https://github.com/user-attachments/assets/ae529ceb-2a67-4c91-bc60-88fcdd4100fe)
+![images2](https://github.com/user-attachments/assets/b1ec8451-a649-4b09-8d3b-10cf9147f4e3)
+
 
 * scikit-learn: A robust library for machine learning in Python, used for building and training the fake news detection models.
   
-![images (1)](https://github.com/user-attachments/assets/7e3df629-3ca4-4b59-8a97-77fe1cdc4d84)
+![images (1)](https://github.com/user-attachments/assets/be20e503-2bd8-4e3f-9051-592a5ef54865)
+
 
 
 * pandas: A data manipulation and analysis library, used for handling datasets.

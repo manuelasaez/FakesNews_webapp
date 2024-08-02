@@ -1,4 +1,4 @@
-# DataLab Workshop
+# DataLab - Workshop
 
 # Fake News Detection Web App
 

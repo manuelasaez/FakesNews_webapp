@@ -27,12 +27,14 @@ They must be installed for using it.
 
 * pandas: A data manipulation and analysis library, used for handling datasets.
 
-![NumPy_logo_2020 svg](https://github.com/user-attachments/assets/3ae7da62-3eb0-47d0-9ac1-00c5fd739c13)
+![NumPy_logo_2020 svg](https://github.com/user-attachments/assets/5442b112-f2f0-41f5-8d21-694069914138)
+
 
 
 * numpy: A fundamental package for numerical computing in Python, used for various numerical operations.
 
-![1_YM2HXc7f4v02pZBEO8h-qw](https://github.com/user-attachments/assets/44083902-df35-42ac-88aa-df0b9600dce3)
+![1_YM2HXc7f4v02pZBEO8h-qw](https://github.com/user-attachments/assets/a2602432-531a-4931-9b69-bbf6956fc77d)
+
 
   
 * NLTK (Natural Language Toolkit): A library for working with human language data, used for text processing and feature extraction.

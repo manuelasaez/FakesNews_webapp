@@ -48,13 +48,13 @@ Our fake news detection web app is built using Python and incorporates several p
   
 ### Pre-requirements 📋
 
-All the requirements for using this tool are in the requirements.txt file attached.
+All the libraries required for using this tool are in the [requirements.txt] file attached.
 
 
 ## Starting 🚀
 
 ### How to use this tool
-#### For common users
+#### For users
 If you just want to try this tool, visit (xxxxxx), web url where the tool is deployed. You can upload your own news file in .csv format to check whether this news is fake or not.
 
 #### For developers

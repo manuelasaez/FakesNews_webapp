@@ -21,6 +21,12 @@ Our fake news detection web app is built using Python and incorporates several p
 
 
 * scikit-learn: A robust library for machine learning in Python, used for building and training the fake news detection models.
+
+  ![1_YM2HXc7f4v02pZBEO8h-qw](https://github.com/user-attachments/assets/93aaef9f-6256-48ce-bdc4-f375734ee921)
+
+
+  
+* NLTK (Natural Language Toolkit): A library for working with human language data, used for text processing and feature extraction.
   
 ![images (1)](https://github.com/user-attachments/assets/be20e503-2bd8-4e3f-9051-592a5ef54865)
 
@@ -34,11 +40,6 @@ Our fake news detection web app is built using Python and incorporates several p
 
 * numpy: A fundamental package for numerical computing in Python, used for various numerical operations.
 
-![1_YM2HXc7f4v02pZBEO8h-qw](https://github.com/user-attachments/assets/93aaef9f-6256-48ce-bdc4-f375734ee921)
-
-
-  
-* NLTK (Natural Language Toolkit): A library for working with human language data, used for text processing and feature extraction.
 
 
 #### In addition, some of the tools used for the project:

@@ -131,6 +131,10 @@ def main():
         st.session_state['title'] = "more than three words"
     if 'text' not in st.session_state:
         st.session_state['text'] = "more than twenty words"
+    if 'label_prediction' not in st.session_state:
+        st.session_state['label_prediction'] = []
+    if 'test_df' not in st.session_state:
+        st.session_state['test_df'] = pd.DataFrame()
   
     # Opción de introducir datos manualmente
     st.markdown('<p style="color: blue;font-weight: bold;">OPTION 1: Manual Data Entry</p>', unsafe_allow_html=True)
@@ -154,86 +158,93 @@ def main():
 
     if uploaded_file:
         preprocess = Preprocess()
-        test_df = preprocess.read_csv(uploaded_file)
-        st.dataframe(test_df)
+        st.session_state['test_df']= preprocess.read_csv(uploaded_file)
+        st.dataframe(st.session_state['test_df'])
 
         # Verificar si existen las columnas 'title', 'author' y 'text'
         required_columns = ['title', 'author', 'text']
-        missing_columns = [col for col in required_columns if col not in test_df.columns]
+        missing_columns = [col for col in required_columns if col not in st.session_state['test_df'].columns]
 
         if missing_columns:
             st.warning(f"The uploaded file is missing the following required columns: {', '.join(missing_columns)}. Please add them and try again.")
 
         Upload = False  # identificador para cargar datos
-        result = author_parcen_check(authors, test_df)
+        result = author_parcen_check(authors, st.session_state['test_df'])
         st.write("File uploaded:", uploaded_file.name)
-        st.dataframe(result)
+        #st.dataframe(result)
         
     if Upload:
         preprocess = Preprocess()
-        test_df = preprocess.read_manual(title,author,text)
-        result = author_parcen_check(authors, test_df)
-        st.dataframe(result)
-        #test_df = pd.DataFrame([{'title': st.session_state['title'],
-        #                         'author': st.session_state['author'],
-        #                         'text': st.session_state['text']}])
-        
+        st.session_state['test_df'] = preprocess.read_manual(title,author,text)
+        result = author_parcen_check(authors, st.session_state['test_df'])
+        #st.dataframe(result)
+     # Procesar datos
+    st.dataframe(result)  
+    st.session_state['test_df'] = preprocess.remove_rows()
+    st.session_state['test_df'] = preprocess.remove_duplicates()
+    st.session_state['test_df'] = preprocess.remove_rows_lower_than20()
+    st.session_state['test_df'] = preprocess.newtext()
+    st.session_state['test_df'] = preprocess.filter_english_text_edit_df(st.session_state['test_df'], 'new_text')
 
     if st.button("Evaluate", key="evaluate_button"):
-        if 'author' in test_df.columns and 'title' in test_df.columns and 'text' in test_df.columns:
-            # Procesar datos
-             
-            test_df = preprocess.remove_rows()
-            test_df = preprocess.remove_duplicates()
-            test_df = preprocess.remove_rows_lower_than20()
-            test_df = preprocess.newtext()
-            test_df = preprocess.filter_english_text_edit_df(test_df, 'new_text')
+        if 'author' in st.session_state['test_df'].columns and 'title' in st.session_state['test_df'].columns and 'text' in st.session_state['test_df'].columns:
 
             # Vectorizar el texto
             object_vectorization = Vectorization()
-            filtered_corpus = test_df["new_text"].values
+            filtered_corpus = st.session_state['test_df']["new_text"].values
             max_features = 100  # esto se puede cambiar
-            unigram_vectors_without_stopwords, _ = object_vectorization.get_tfidf_vectors(filtered_corpus, "english", max_features, 1)
-
+            unigram_vectors_without_stopwords,_ = object_vectorization.get_tfidf_vectors(
+                 filtered_corpus, "english", max_features, 1
+             )
             if unigram_vectors_without_stopwords.shape[1] < 100:
-                st.warning(f"The document does not have enough unique words. It has {unigram_vectors_without_stopwords.shape[1]} out of the 100 it should have.")
+                st.warning(f"El documento no tiene suficientes palabras unicas. Posee {unigram_vectors_without_stopwords.shape[1]} de las 100 que deveria tener")
             else:
-                # Hacer predicciones
+                 # Hacer predicciones
                 model_vec=model['model']
+                if model_option == 'Gaussian NB':
+                    unigram_vectors_without_stopwords=unigram_vectors_without_stopwords.toarray()
                 predictions = model_vec.predict(unigram_vectors_without_stopwords)
-    
                 # Mostrar las predicciones
-                test_df['label_predict'] = predictions
-                
-                st.dataframe(test_df)
-                
+                st.session_state['label_prediction'] = predictions.tolist()
+                st.session_state['test_df']['label_prediction'] = st.session_state['label_prediction']
+                st.dataframe(st.session_state['test_df'])
+                                                         
     
                 def highlight_predictions(row):
-                    color = 'background-color: red' if row['label_predict'] == 1 else ''
+                    color = 'background-color: red' if row['label_prediction'] == 1 else ''
                     return [color] * len(row)
     
-                styled_df = test_df.style.apply(highlight_predictions, axis=1)
+                styled_df = st.session_state['test_df'].style.apply(highlight_predictions, axis=1)
                 st.write("The ones marked in red are Fake News")
                 st.dataframe(styled_df)
-
+                
         else:
             st.warning("Please fill in all fields.")
 
     # Guardar nuevos datos si no hay duplicados
     if st.button("Save Data"):
         save_path = 'data/saved_data.csv'
+        st.session_state['test_df']['label_prediction'] = st.session_state['label_prediction']
 
         if os.path.exists(save_path):
             existing_data = load_data(save_path)
-            st.write(test_df)            
-            st.dataframe(existing_data)
+            #st.write(st.session_state['test_df'])            
+            #st.dataframe(existing_data)
         
         else:
-            existing_data = pd.DataFrame(columns=['id_new', 'title', 'author', 'text', 'label_predict'])
-            st.dataframe(existing_data)
-        
-        
-        duplicates = existing_data.merge(test_df, on=['text'], how='inner')
+            existing_data = pd.DataFrame(columns=['id_new', 'title', 'author', 'text', 'label_prediction'])
+            #st.dataframe(existing_data)
+            
+
+        #Verificar que st.session_state['test_df'] tenga la columna 'label_prediction'
+        if 'label_prediction' not in st.session_state['test_df'].columns:
+            st.warning("The 'label_prediction' column is missing in st.session_state['test_df'].")
+        else:
+            st.write("st.session_state['test_df'] contains 'label_prediction' column.")
+            st.dataframe(st.session_state['test_df'])
+    
+        # Identificar duplicados
+        duplicates = st.session_state['test_df'].merge(existing_data, on=['text'], how='inner')
 
         if not duplicates.empty:
             st.warning("Duplicate entries found. Please confirm to overwrite.")
@@ -241,7 +252,7 @@ def main():
             st.session_state['duplicate_entries'] = duplicates
             if st.button("Confirm Save Duplicates"):
                 if not st.session_state['duplicate_entries'].empty:
-                    combined_data = pd.concat([existing_data, test_df]).drop_duplicates().reset_index(drop=True)
+                    combined_data = pd.concat([existing_data, st.session_state['test_df']]).drop_duplicates(subset=['text'], keep='last').reset_index(drop=True)
                     st.write("Author introduced:", len(styled_df))
                     combined_data['id_new'] = range(0,len(combined_data))
                     combined_data.to_csv(save_path, index=False)
@@ -250,11 +261,13 @@ def main():
                 else:
                     st.warning("No duplicates to save.")
         else:
-            combined_data = pd.concat([existing_data, test_df]).drop_duplicates().reset_index(drop=True)
+            combined_data = pd.concat([existing_data, st.session_state['test_df']]).drop_duplicates(subset=['text'], keep='last').reset_index(drop=True)
             combined_data['id_new'] = range(0,len(combined_data))
+            # Asegurarse de que label_predict está correctamente asignado
+            #combined_data.loc[combined_data['text'].isin(st.session_state['test_df']['text']), 'label_prediction'] = st.session_state['test_df'].set_index('text').loc[combined_data['text'], 'label_prediction'].values
             combined_data.to_csv(save_path, index=False)
             st.write("File Saved")
-            st.dataframe(duplicates)
+            st.dataframe(combined_data)
             st.success("Data saved successfully!")
 
 if __name__ == "__main__":

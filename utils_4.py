@@ -4,23 +4,25 @@ import re
 import os
 from langdetect import detect, LangDetectException
 from sklearn.feature_extraction.text import TfidfVectorizer
+
 """!pip install langdetect
 !pip install umap-learn"""
+
+
 class Preprocess:
     def __init__(self):
         self.df = None
 
     def read_manual(self, title, author, text):
-        self.df = pd.DataFrame([{'id_new': -1,
-                                 'title': title,
-                                 'author': author,
-                                 'text': text}])
+        self.df = pd.DataFrame(
+            [{"id_new": -1, "title": title, "author": author, "text": text}]
+        )
         return self.df
 
-    def read_csv(self,  df_file=None):
+    def read_csv(self, df_file=None):
         """Read CSV files. If test_file is None, only read test file."""
         self.df = pd.read_csv(os.getcwd() + "/data/train.csv", dtype="str")
-        #self.test_df = pd.read_csv(os.getcwd() + "/data/test.csv", dtype="str")
+        # self.test_df = pd.read_csv(os.getcwd() + "/data/test.csv", dtype="str")
         if df_file:
             self.df = pd.read_csv(df_file, dtype="str")
         return self.df
@@ -30,7 +32,9 @@ class Preprocess:
         self.df = self.df.dropna()
         self.df = self.df.astype(str)
         for column in self.df.columns:
-            self.df[column] = self.df[column].apply(lambda x: re.sub(r'[^\w\s\d+]', '', x))
+            self.df[column] = self.df[column].apply(
+                lambda x: re.sub(r"[^\w\s\d+]", "", x)
+            )
         return self.df
 
     def remove_duplicates(self):
@@ -43,16 +47,17 @@ class Preprocess:
         self.df = self.df[self.df["text"].str.len() >= 20]
         return self.df
 
-
     def newtext(self):
         """Convert non-string objects in strings for title, author and text and then fill missing values with empty strings
         Create new column called "new text" merging title, text and author column"""
 
         self.df["new_text"] = self.df["text"] + self.df["title"] + self.df["author"]
-        
+
         return self.df
 
-    def filter_english_text_edit_df(self, df: pd.DataFrame, text_column: str) -> pd.DataFrame:
+    def filter_english_text_edit_df(
+        self, df: pd.DataFrame, text_column: str
+    ) -> pd.DataFrame:
         """
         Detects and filters only English text from a DataFrame based on a specified text column.
         Edits the original DataFrame to keep only the rows where the detected language is English.
@@ -99,7 +104,6 @@ class Preprocess:
 class Vectorization:
     def __init__(self) -> None:
         pass
-    
 
     def get_tfidf_vectors(
         self,
@@ -137,6 +141,7 @@ class Vectorization:
         # Return the resulting TF-IDF vectors
         return self.vectorized, self.words
 
+
 # Función para dividir autores
 def split_authors(author_str):
     """
@@ -155,17 +160,18 @@ def split_authors(author_str):
     Examples:
         >>> split_authors("John Doe, Jane Smith and Alice Johnson")
         ['John Doe', 'Jane Smith', 'Alice Johnson']
-        
+
         >>> split_authors("Albert Einstein, Marie Curie")
         ['Albert Einstein', 'Marie Curie']
-        
+
         >>> split_authors(None)
         []
     """
     if pd.isna(author_str):
         return []
-    authors = re.split(', | and ', author_str)
+    authors = re.split(", | and ", author_str)
     return [author.strip() for author in authors]
+
 
 # Función para verificar si un nombre parece ser de una persona
 def is_person_name(lst):
@@ -204,21 +210,20 @@ def authors_counts():
     """
     # Read the CSV file into a DataFrame
     df = pd.read_csv(os.getcwd() + "/data/train.csv", dtype="str")
-    
+
     # Calculate the count of news articles for each author
-    author_counts = df['author'].value_counts()
-    
+    author_counts = df["author"].value_counts()
+
     # Map the counts back to the DataFrame
-    df['news_count'] = df['author'].map(author_counts)
-       # Calcula el número de noticias reales (donde 'label' es '0') por autor
-    real_news_counts = df[df['label'] == '0']['author'].value_counts()
-    
+    df["news_count"] = df["author"].map(author_counts)
+    # Calcula el número de noticias reales (donde 'label' es '0') por autor
+    real_news_counts = df[df["label"] == "0"]["author"].value_counts()
+
     # Mapea el conteo de noticias reales a la columna 'real_news_count'
-    df['real_count'] = df['author'].map(real_news_counts).fillna(0).astype(int)
-    
+    df["real_count"] = df["author"].map(real_news_counts).fillna(0).astype(int)
+
     # Return the modified DataFrame
     return df
-
 
 
 # Función para comparar el nuevo DataFrame con el reporte inicial y notificar sobre nuevos autores
@@ -246,7 +251,7 @@ def author_parcen_check(report_df, new_authors_df):
     Notes:
         - The function assumes the presence of a column named 'author' in both input DataFrames.
         - The `split_authors` and `is_person_name` functions should be defined elsewhere in the code.
-    
+
     Examples:
         >>> report_df = pd.DataFrame({
         ...     'author': ['John Doe', 'Jane Smith'],
@@ -262,21 +267,37 @@ def author_parcen_check(report_df, new_authors_df):
         1  alice johnson      0                      0      New
     """
     results = []
-    report_df['author'] = report_df['author'].str.lower().dropna().drop_duplicates()
-    new_authors_df['author'] = new_authors_df['author'].str.lower().dropna().drop_duplicates()
-    initial_authors = report_df['author'].tolist()
+    report_df["author"] = report_df["author"].str.lower().dropna().drop_duplicates()
+    new_authors_df["author"] = (
+        new_authors_df["author"].str.lower().dropna().drop_duplicates()
+    )
+    initial_authors = report_df["author"].tolist()
 
     for _, row in new_authors_df.iterrows():
-        authors = split_authors(row['author'])
+        authors = split_authors(row["author"])
         for author in authors:
             if is_person_name(author):
                 if author in initial_authors:
-                    author_report = report_df[report_df['author'] == author]
-                    news_count = author_report['news_count'].values[0]
-                    percentage_real_news = author_report['real_count'].values[0]
-                    results.append({'author': author, 'news_count': news_count, 'percentage_real_news': percentage_real_news, 'status': 'Existing'})
+                    author_report = report_df[report_df["author"] == author]
+                    news_count = author_report["news_count"].values[0]
+                    percentage_real_news = author_report["real_count"].values[0]
+                    results.append(
+                        {
+                            "author": author,
+                            "news_count": news_count,
+                            "number_real_news": percentage_real_news,
+                            "status": "Existing",
+                        }
+                    )
                 else:
-                    results.append({'author': author, 'news_count': 0, 'percentage_real_news': 0, 'status': 'New'})
+                    results.append(
+                        {
+                            "author": author,
+                            "news_count": 0,
+                            "number_real_news": 0,
+                            "status": "New",
+                        }
+                    )
 
     results_df = pd.DataFrame(results)
     return results_df

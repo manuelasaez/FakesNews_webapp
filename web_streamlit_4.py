@@ -89,8 +89,7 @@ def main():
         true_matrix = X_train[true_indices]
         false_matrix = X_train[false_indices]
 
-        # Sumar las frecuencias de las palabras para las noticias verdaderas y falsas
-        if model_option == "Gaussian NB":
+     
         
         # Add up the word frequencies for true and false news
         if  model_option == 'Gaussian NB':

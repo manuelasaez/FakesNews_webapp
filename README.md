@@ -1,6 +1,8 @@
 # DataLab - Workshop
 
-# Fake News Detection Web App
+# Fake News Detection Web App 
+
+# Link --> https://datalab-workshop.streamlit.app/
 
 ## Motivation
 In the current digital age, the proliferation of fake news has become a significant concern. Misinformation can spread rapidly, misleading readers and causing widespread impact. To address this issue, our team embarked on a project to develop a web application that leverages machine learning techniques to detect fake news.
@@ -56,43 +58,12 @@ All the libraries required for using this tool are in the [requirements.txt] fil
 
 ### How to use this tool
 #### For users
-If you just want to try this tool, visit (xxxxxx), web url where the tool is deployed. You can upload your own news file in .csv format to check whether this news is fake or not.
+If you just want to try this tool, visit https://datalab-workshop.streamlit.app, the URL where the tool is deployed. You can upload your own news file in .csv format to check whether this news is fake or not.
 
 #### For developers
 At first, clone this GitHub repo on your local machine and make a pull request if you wish to contribute on it.
 To run it from your IDE, please run "streamlit run webapp.py" from your terminal. 
 If you are having some trouble, try with "streamlit run webapp.py --server.enableXsrfProtection false"   
-
-
-
-
-
-
-## Ejecutando las pruebas ⚙️
-
-_Explica como ejecutar las pruebas automatizadas para este sistema_
-
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
-### Y las pruebas de estilo de codificación ⌨️
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
-## Despliegue 📦
-
-_Agrega notas adicionales sobre como hacer deploy_
-
-
 
 
 ## Conclusion
@@ -120,7 +91,7 @@ More information about the project can be found in the complete documentation on
 
 ## License 📄
 
-This project is under xxxxx license [LICENSE.md](LICENSE.md) for further details
+This project is under license [LICENSE.md](LICENSE.md) for further details
 
 
 

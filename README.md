@@ -2,7 +2,7 @@
 
 # Fake News Detection Web App 
 
-# Link --> https://datalab-workshop.streamlit.app/
+## Link --> https://datalab-workshop.streamlit.app/
 
 ## Motivation
 In the current digital age, the proliferation of fake news has become a significant concern. Misinformation can spread rapidly, misleading readers and causing widespread impact. To address this issue, our team embarked on a project to develop a web application that leverages machine learning techniques to detect fake news.

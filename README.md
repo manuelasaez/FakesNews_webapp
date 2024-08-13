@@ -1,6 +1,8 @@
 # DataLab - Workshop
 
-# Fake News Detection Web App
+# Fake News Detection Web App 
+
+## Link --> https://datalab-workshop.streamlit.app/
 
 ## Motivation
 In the current digital age, the proliferation of fake news has become a significant concern. Misinformation can spread rapidly, misleading readers and causing widespread impact. To address this issue, our team embarked on a project to develop a web application that leverages machine learning techniques to detect fake news.
@@ -56,7 +58,7 @@ All the libraries required for using this tool are in the [requirements.txt] fil
 
 ### How to use this tool
 #### For users
-If you just want to try this tool, visit (xxxxxx), web url where the tool is deployed. You can upload your own news file in .csv format to check whether this news is fake or not.
+If you just want to try this tool, visit https://datalab-workshop.streamlit.app, the URL where the tool is deployed. You can upload your own news file in .csv format to check whether this news is fake or not.
 
 #### For developers
 At first, clone this GitHub repo on your local machine and make a pull request if you wish to contribute on it.
@@ -64,44 +66,16 @@ To run it from your IDE, please run "streamlit run webapp.py" from your terminal
 If you are having some trouble, try with "streamlit run webapp.py --server.enableXsrfProtection false"   
 
 
-
-
-
-
-## Ejecutando las pruebas ⚙️
-
-_Explica como ejecutar las pruebas automatizadas para este sistema_
-
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
-### Y las pruebas de estilo de codificación ⌨️
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
-## Despliegue 📦
-
-_Agrega notas adicionales sobre como hacer deploy_
-
-
-
-
 ## Conclusion
 By integrating state-of-the-art machine learning techniques and creating a seamless user experience, our fake news detection web app aims to be a valuable tool for news portals and readers alike, promoting the dissemination of accurate and trustworthy information. 
 
 ## Team Members
 
+- **Luciano Darriba** 
+  - GitHub: [@lucianodarriba](https://github.com/lucianodarriba)
 
-
+- **Leonardo Ferreira da Silva** 
+  - GitHub: [@leofds12](https://github.com/leofds12)
 
 - **Maria Manuela Saez** 
   - GitHub: [@manuelasaez](https://github.com/manuelasaez)
@@ -109,20 +83,14 @@ By integrating state-of-the-art machine learning techniques and creating a seaml
 - **Nataniel Martinez** 
   - GitHub: [@nata3508](https://github.com/Nata3508)
 
-- **Leonardo Ferreira da Silva** 
-  - GitHub: [@leofds12](https://github.com/leofds12)
 - **Luis Vasquez** 
   - GitHub: [@LuisVas24](https://github.com/LuisVas24)
- 
-- **Luciano Darriba** 
-  - GitHub: [@lucianodarriba](https://github.com/lucianodarriba)
 
 
 More information about the project can be found in the complete documentation on Notion: [Fake_news_doc](https://www.notion.so/Fake-News-Project-Documentation-8dfd79c111b04254bc67b1c83e70a940?pvs=4)
 
 ## License 📄
 
-This project is under xxxxx license [LICENSE.md](LICENSE.md) for further details
-
+This project is under license [LICENSE.md](LICENSE.md) for further details
 
 
